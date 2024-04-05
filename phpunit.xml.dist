@@ -21,7 +21,6 @@
       <directory>tests/Functional</directory>
     </testsuite>
   </testsuites>
-  <coverage/>
   <!-- Run `composer require symfony/panther` before enabling this extension -->
   <!--
     <extensions>
