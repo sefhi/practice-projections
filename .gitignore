@@ -81,3 +81,9 @@
 .phpunit.cache
 coverage.xml
 ###< phpunit/phpunit ###
+
+docker-compose.override.yaml
+
+###> phpstan/phpstan ###
+phpstan.neon
+###< phpstan/phpstan ###
