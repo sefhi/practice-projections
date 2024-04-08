@@ -26,12 +26,13 @@ final class User extends AggregateRoot
     }
 
     public static function create(
+        string $id,
         string $name,
         string $email,
         string $profilePicture,
     ): self {
         return new self(
-            Uuid::uuid7(),
+            Uuid::fromString($id),
             UserName::fromString($name),
             UserEmail::fromString($email),
             UserProfilePicture::fromString($profilePicture),
