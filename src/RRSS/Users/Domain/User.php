@@ -25,7 +25,7 @@ final class User extends AggregateRoot
     ) {
     }
 
-    public function create(
+    public static function create(
         string $name,
         string $email,
         string $profilePicture,
