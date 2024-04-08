@@ -31,13 +31,25 @@ final class User extends AggregateRoot
         string $email,
         string $profilePicture,
     ): self {
-        return new self(
+        $user = new self(
             Uuid::fromString($id),
             UserName::fromString($name),
             UserEmail::fromString($email),
             UserProfilePicture::fromString($profilePicture),
             self::DEFAULT_STATUS
         );
+
+        $user->record(
+            new UserRegisteredDomainEvent(
+                $user->id->toString(),
+                $user->name->value(),
+                $user->email->value(),
+                $user->profilePicture->value(),
+                self::DEFAULT_STATUS->value,
+            )
+        );
+
+        return $user;
     }
 
     public function getId(): string

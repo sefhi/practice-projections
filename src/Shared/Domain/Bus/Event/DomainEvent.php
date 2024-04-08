@@ -11,8 +11,11 @@ abstract class DomainEvent
     private readonly string $eventId;
     private readonly string $occurredOn;
 
-    public function __construct(private readonly string $aggregateId, ?string $eventId = null, ?string $occurredOn = null)
-    {
+    public function __construct(
+        private readonly string $aggregateId,
+        ?string $eventId = null,
+        ?string $occurredOn = null
+    ) {
         $date             = new \DateTimeImmutable();
         $this->eventId    = $eventId ?: (string) Uuid::uuid7();
         $this->occurredOn = $occurredOn ?: $date->format(\DateTimeInterface::ATOM);
