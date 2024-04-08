@@ -15,6 +15,6 @@ final class UserProfilePictureMother
 
     public static function random(): UserProfilePicture
     {
-        return self::create('profile_picture' . rand(1, 1000) . '.png');
+        return self::create('profile_picture'.rand(1, 1000).'.png');
     }
 }

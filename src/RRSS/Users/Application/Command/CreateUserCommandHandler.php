@@ -7,11 +7,13 @@ namespace App\RRSS\Users\Application\Command;
 use App\RRSS\Users\Domain\User;
 use App\RRSS\Users\Domain\UserRepository;
 use App\Shared\Domain\Bus\Command\CommandHandler;
+use App\Shared\Domain\Bus\Event\EventBus;
 
 final readonly class CreateUserCommandHandler implements CommandHandler
 {
     public function __construct(
         private UserRepository $userRepository,
+        private EventBus $eventBus,
     ) {
     }
 
@@ -25,5 +27,7 @@ final readonly class CreateUserCommandHandler implements CommandHandler
         );
 
         $this->userRepository->save($user);
+
+        $this->eventBus->publish(...$user->pullDomainEvents());
     }
 }

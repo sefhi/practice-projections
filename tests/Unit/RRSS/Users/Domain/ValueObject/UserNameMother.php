@@ -15,6 +15,6 @@ final class UserNameMother
 
     public static function random(): UserName
     {
-        return self::create('name' . rand(1, 1000));
+        return self::create('name'.rand(1, 1000));
     }
 }

@@ -15,6 +15,6 @@ final class UserEmailMother
 
     public static function random(): UserEmail
     {
-        return self::create('email' . rand(1, 1000) . '@mail.com');
+        return self::create('email'.rand(1, 1000).'@mail.com');
     }
 }
