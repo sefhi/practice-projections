@@ -1,0 +1,4 @@
+PostCreateUser:
+  path: /
+  controller: App\RRSS\Users\Infrastructure\Api\CreateUserController
+  methods: [POST]

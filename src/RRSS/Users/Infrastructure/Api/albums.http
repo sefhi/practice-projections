@@ -1,0 +1,12 @@
+###
+### 0. Create user
+POST http://localhost:41/api/users
+Content-Type: application/json
+
+{
+  "id": "018ebd0b-54ac-7209-9b34-f8a9429e3d3f" ,
+  "name": "John Doe",
+  "email": "jhondoe@gmail.com",
+  "profilePicture": "https://www.google.com"
+}
+
