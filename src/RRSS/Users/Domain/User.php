@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace App\RRSS\Domain;
+namespace App\RRSS\Users\Domain;
 
-use App\RRSS\Domain\ValueObject\UserEmail;
-use App\RRSS\Domain\ValueObject\UserName;
-use App\RRSS\Domain\ValueObject\UserProfilePicture;
-use App\RRSS\Domain\ValueObject\UserStatus;
+use App\RRSS\Users\Domain\ValueObject\UserEmail;
+use App\RRSS\Users\Domain\ValueObject\UserName;
+use App\RRSS\Users\Domain\ValueObject\UserProfilePicture;
+use App\RRSS\Users\Domain\ValueObject\UserStatus;
 use App\Shared\Domain\Aggregate\AggregateRoot;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;

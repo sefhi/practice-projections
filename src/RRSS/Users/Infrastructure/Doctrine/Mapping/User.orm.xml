@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+                  http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+    <entity name="App\RRSS\Users\Domain\User" table="rrss_user">
+        <id name="id" type="uuid" length="36"/>
+
+        <embedded name="name" class="App\RRSS\Users\Domain\ValueObject\UserName" use-column-prefix="false"/>
+        <embedded name="email" class="App\RRSS\Users\Domain\ValueObject\UserEmail" use-column-prefix="false"/>
+        <embedded name="profilePicture" class="App\RRSS\Users\Domain\ValueObject\UserProfilePicture" use-column-prefix="false"/>
+        <field enum-type="App\RRSS\Users\Domain\ValueObject\UserStatus" name="status"/>
+    </entity>
+
+</doctrine-mapping>

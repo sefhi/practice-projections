@@ -17,11 +17,11 @@ doctrine:
         auto_mapping: true
         mappings:
             App:
-                type: attribute
+                type: xml
                 is_bundle: false
-                dir: '%kernel.project_dir%/src/Entity'
-                prefix: 'App\Entity'
-                alias: App
+                dir: '%kernel.project_dir%/src/RRSS/Users/Infrastructure/Doctrine/Mapping'
+                prefix: 'App\RRSS\Users\Domain'
+                alias: RSS\User
         controller_resolver:
             auto_mapping: true
 

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\RRSS\Domain\ValueObject;
+namespace App\RRSS\Users\Domain\ValueObject;
 
 enum UserStatus: string
 {

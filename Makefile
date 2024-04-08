@@ -96,3 +96,33 @@ lint-diff:
 
 static-analysis:
 	$(EXEC)  ./vendor/bin/phpstan analyse -c phpstan.neon.dist
+
+rm-database:
+	@docker-compose rm -f database
+compose: stop rm-database
+	@docker-compose up -d --force-recreate database
+
+create-db: create-db/dev create-db/test
+create-db/dev:
+	@docker exec $(CONTAINER)-$(CONTAINER_SUFFIX) php bin/console doctrine:database:create --env=dev --no-interaction --if-not-exists
+create-db/test:
+	@docker exec $(CONTAINER)-$(CONTAINER_SUFFIX) php bin/console doctrine:database:create --env=test --no-interaction --if-not-exists
+
+migrate: migrate/dev migrate/test
+migrate/dev:
+	@docker exec $(CONTAINER)-$(CONTAINER_SUFFIX) php bin/console doctrine:migrations:migrate --env=dev
+
+migrate/test:
+	@docker exec $(CONTAINER)-$(CONTAINER_SUFFIX) php bin/console doctrine:migrations:migrate --env=test
+
+migration/diff:
+	@docker exec $(CONTAINER)-$(CONTAINER_SUFFIX) php bin/console doctrine:migrations:diff
+
+migration/gen:
+	@docker exec $(CONTAINER)-$(CONTAINER_SUFFIX) php bin/console doctrine:migrations:generate
+
+drop-db: drop-db/dev  drop-db/test
+drop-db/dev:
+	@docker exec $(CONTAINER)-$(CONTAINER_SUFFIX) php bin/console doctrine:database:drop --force --env=dev --if-exists
+drop-db/test:
+	@docker exec $(CONTAINER)-$(CONTAINER_SUFFIX) php bin/console doctrine:database:drop --force --env=test --if-exists
