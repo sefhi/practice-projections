@@ -5,7 +5,7 @@
                   http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
 
     <embeddable name="App\RRSS\Users\Domain\ValueObject\UserEmail">
-        <field column="email" name="value" length="150"/>
+        <field column="email" name="value" length="150" unique="true"/>
     </embeddable>
 
 </doctrine-mapping>
