@@ -14,7 +14,7 @@ use Ramsey\Uuid\UuidInterface;
 
 final class User extends AggregateRoot
 {
-    private const DEFAULT_STATUS = UserStatus::ACTIVE;
+    public const DEFAULT_STATUS = UserStatus::ACTIVE;
 
     private function __construct(
         private UuidInterface $id,
