@@ -16,12 +16,18 @@ doctrine:
         naming_strategy: doctrine.orm.naming_strategy.underscore_number_aware
         auto_mapping: true
         mappings:
-            App:
+            RRSS:
                 type: xml
                 is_bundle: false
                 dir: '%kernel.project_dir%/src/RRSS/Users/Infrastructure/Doctrine/Mapping'
                 prefix: 'App\RRSS\Users\Domain'
                 alias: RSS\User
+            Retention:
+                type: xml
+                is_bundle: false
+                dir: '%kernel.project_dir%/src/Retention/Users/Infrastructure/Doctrine/Mapping'
+                prefix: 'App\Retention\Users\Domain'
+                alias: Retention\User
         controller_resolver:
             auto_mapping: true
 

@@ -34,7 +34,7 @@ class SymfonyExceptionListener
 
         // Exception on buses
         if ($exception instanceof HandlerFailedException) {
-            $exception       = $exception->getNestedExceptions()[0];
+            $exception       = $exception->getWrappedExceptions()[0];
             $body['message'] = $exception->getMessage();
         }
 

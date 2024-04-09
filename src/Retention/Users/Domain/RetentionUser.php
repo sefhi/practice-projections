@@ -4,10 +4,14 @@ declare(strict_types=1);
 
 namespace App\Retention\Users\Domain;
 
-final class RetentionUser
+use App\Shared\Domain\Aggregate\AggregateRoot;
+use Ramsey\Uuid\Uuid;
+use Ramsey\Uuid\UuidInterface;
+
+final class RetentionUser extends AggregateRoot
 {
     private function __construct(
-        private string $id,
+        private UuidInterface $id,
         private string $name,
         private string $email,
     ) {
@@ -19,7 +23,7 @@ final class RetentionUser
         string $email
     ): self {
         return new self(
-            $id,
+            Uuid::fromString($id),
             $name,
             $email,
         );
@@ -27,7 +31,7 @@ final class RetentionUser
 
     public function getId(): string
     {
-        return $this->id;
+        return $this->id->toString();
     }
 
     public function getName(): string
