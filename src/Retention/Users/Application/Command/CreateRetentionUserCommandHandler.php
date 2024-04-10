@@ -9,7 +9,7 @@ use App\Retention\Users\Domain\RetentionUserRepository;
 use App\Shared\Domain\Bus\Command\CommandHandler;
 use Ramsey\Uuid\Uuid;
 
-readonly class CreateRetentionUserCommandHandler implements CommandHandler
+class CreateRetentionUserCommandHandler implements CommandHandler
 {
     public function __construct(
         private RetentionUserRepository $retentionUserRepository

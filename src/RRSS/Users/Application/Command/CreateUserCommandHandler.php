@@ -9,11 +9,11 @@ use App\RRSS\Users\Domain\UserRepository;
 use App\Shared\Domain\Bus\Command\CommandHandler;
 use App\Shared\Domain\Bus\Event\EventBus;
 
-final readonly class CreateUserCommandHandler implements CommandHandler
+final class CreateUserCommandHandler implements CommandHandler
 {
     public function __construct(
-        private UserRepository $userRepository,
-        private EventBus $eventBus,
+        private readonly UserRepository $userRepository,
+        private readonly EventBus $eventBus,
     ) {
     }
 

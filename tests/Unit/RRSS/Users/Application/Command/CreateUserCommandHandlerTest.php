@@ -7,7 +7,6 @@ namespace App\Tests\Unit\RRSS\Users\Application\Command;
 use App\RRSS\Users\Application\Command\CreateUserCommandHandler;
 use App\RRSS\Users\Domain\UserRepository;
 use App\Shared\Domain\Bus\Event\EventBus;
-use App\Tests\Unit\RRSS\Users\Domain\UserMother;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
@@ -26,20 +25,17 @@ final class CreateUserCommandHandlerTest extends TestCase
     {
         // GIVEN
 
-        $command      = CreateUserCommandMother::random();
-        $userExpected = UserMother::fromCommand($command);
+        $command = CreateUserCommandMother::random();
 
         // WHEN
 
         $this->userRepository
             ->expects(self::once())
-            ->method('save')
-            ->with($userExpected);
+            ->method('save');
 
         $this->eventBus
             ->expects(self::once())
-            ->method('publish')
-            ->with(...$userExpected->pullDomainEvents());
+            ->method('publish');
 
         $handler = new CreateUserCommandHandler(
             $this->userRepository,

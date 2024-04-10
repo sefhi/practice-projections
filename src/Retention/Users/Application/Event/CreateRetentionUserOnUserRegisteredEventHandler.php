@@ -16,7 +16,7 @@ final readonly class CreateRetentionUserOnUserRegisteredEventHandler implements 
     ) {
     }
 
-    public function __invoke(UserRegisteredDomainEvent $event): void
+    public function on(UserRegisteredDomainEvent $event): void
     {
         ($this->createRetentionUserCommandHandler)(
             new CreateRetentionUserCommand(
