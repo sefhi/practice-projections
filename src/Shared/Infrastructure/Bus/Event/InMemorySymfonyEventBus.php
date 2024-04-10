@@ -6,19 +6,19 @@ namespace App\Shared\Infrastructure\Bus\Event;
 
 use App\Shared\Domain\Bus\Event\DomainEvent;
 use App\Shared\Domain\Bus\Event\EventBus;
-use Symfony\Component\EventDispatcher\EventDispatcherInterface;
+use Symfony\Component\Messenger\MessageBusInterface;
 
 final readonly class InMemorySymfonyEventBus implements EventBus
 {
     public function __construct(
-        private EventDispatcherInterface $eventDispatcher
+        private MessageBusInterface $eventBus
     ) {
     }
 
     public function publish(DomainEvent ...$events): void
     {
         foreach ($events as $event) {
-            $this->eventDispatcher->dispatch($event);
+            $this->eventBus->dispatch($event);
         }
     }
 }
