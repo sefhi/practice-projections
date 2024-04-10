@@ -16,18 +16,30 @@ doctrine:
         naming_strategy: doctrine.orm.naming_strategy.underscore_number_aware
         auto_mapping: true
         mappings:
-            RRSS:
+            RRSS_Users:
                 type: xml
                 is_bundle: false
-                dir: '%kernel.project_dir%/src/RRSS/Users/Infrastructure/Doctrine/Mapping'
+                dir: '%kernel.project_dir%/src/RRSS/Users/Infrastructure/Persistence/Doctrine/Mapping'
                 prefix: 'App\RRSS\Users\Domain'
                 alias: RSS\User
+            RRSS_Posts:
+                type: xml
+                is_bundle: false
+                dir: '%kernel.project_dir%/src/RRSS/Posts/Infrastructure/Persistence/Doctrine/Mapping'
+                prefix: 'App\RRSS\Posts\Domain'
+                alias: RSS\Post
             Retention:
                 type: xml
                 is_bundle: false
-                dir: '%kernel.project_dir%/src/Retention/Users/Infrastructure/Doctrine/Mapping'
+                dir: '%kernel.project_dir%/src/Retention/Users/Infrastructure/Persistence/Doctrine/Mapping'
                 prefix: 'App\Retention\Users\Domain'
                 alias: Retention\User
+            Shared:
+                type: xml
+                is_bundle: false
+                dir: '%kernel.project_dir%/src/Shared/Infrastructure/Persistence/Doctrine/Mapping'
+                prefix: 'App\Shared\Domain'
+                alias: Shared
         controller_resolver:
             auto_mapping: true
 

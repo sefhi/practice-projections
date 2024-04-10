@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+                  http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+
+    <entity name="App\RRSS\Posts\Domain\Post" table="rrss_post">
+        <id name="id" type="uuid" length="36"/>
+        <field name="userId" type="uuid" length="36"/>
+
+        <embedded name="content" class="App\RRSS\Posts\Domain\ValueObject\PostContent" use-column-prefix="false"/>
+        <embedded name="likes" class="App\RRSS\Posts\Domain\ValueObject\PostLikes" use-column-prefix="false"/>
+        <embedded name="dates" class="App\Shared\Domain\ValueObject\Timestamps" use-column-prefix="false"/>
+    </entity>
+
+</doctrine-mapping>
