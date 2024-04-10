@@ -1,0 +1,4 @@
+PostPublishPost:
+  path: /
+  controller: App\RRSS\Posts\Infrastructure\Api\PublishPostController
+  methods: [POST]

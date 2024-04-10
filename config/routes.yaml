@@ -7,3 +7,8 @@ Users:
     prefix: /api/users
     resource: ../src/RRSS/Users/Infrastructure/Api/routes.yaml
     trailing_slash_on_root: false
+
+Posts:
+    prefix: /api/posts
+    resource: ../src/RRSS/Posts/Infrastructure/Api/routes.yaml
+    trailing_slash_on_root: false

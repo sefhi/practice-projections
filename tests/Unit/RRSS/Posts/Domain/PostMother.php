@@ -2,6 +2,7 @@
 
 namespace App\Tests\Unit\RRSS\Posts\Domain;
 
+use App\RRSS\Posts\Application\Command\PublishPostCommand;
 use App\RRSS\Posts\Domain\Post;
 use App\Tests\Unit\Shared\Domain\ValueObject\TimestampsMother;
 use Ramsey\Uuid\Uuid;
@@ -27,6 +28,15 @@ class PostMother
             Uuid::uuid7(),
             Uuid::uuid7(),
             'content',
+        );
+    }
+
+    public static function fromCommand(PublishPostCommand $command): Post
+    {
+        return self::publish(
+            $command->id(),
+            $command->userId(),
+            $command->content(),
         );
     }
 }

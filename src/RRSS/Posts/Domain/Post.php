@@ -28,13 +28,23 @@ final class Post extends AggregateRoot
         string $content,
         Timestamps $dates
     ): self {
-        return new self(
+        $post = new self(
             Uuid::fromString($id),
             Uuid::fromString($userId),
             PostContent::fromString($content),
             PostLikes::init(),
             $dates->now()
         );
+
+        $post->record(
+            new PostPublishedDomainEvent(
+                $post->id->toString(),
+                $post->userId->toString(),
+                $post->content->value(),
+            )
+        );
+
+        return $post;
     }
 
     public function id(): string
