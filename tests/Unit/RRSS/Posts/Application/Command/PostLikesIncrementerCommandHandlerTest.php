@@ -5,6 +5,7 @@ namespace App\Tests\Unit\RRSS\Posts\Application\Command;
 use App\RRSS\Posts\Application\Command\PostLikesIncrementerCommand;
 use App\RRSS\Posts\Application\Command\PostLikesIncrementerCommandHandler;
 use App\RRSS\Posts\Domain\Post;
+use App\RRSS\Posts\Domain\PostNotFoundException;
 use App\RRSS\Posts\Domain\PostRepository;
 use App\Tests\Unit\RRSS\Posts\Domain\PostMother;
 use PHPUnit\Framework\MockObject\MockObject;
@@ -47,6 +48,25 @@ class PostLikesIncrementerCommandHandlerTest extends TestCase
 
         $handler = new PostLikesIncrementerCommandHandler($this->postRepository);
 
+        $handler($command);
+    }
+
+    /** @test */
+    public function itNotShouldIncrementPostLikesWhenNoExistsPost(): void
+    {
+        $command = new PostLikesIncrementerCommand(Uuid::uuid7()->toString());
+
+        $this->postRepository
+            ->method('findById')
+            ->willReturn(null);
+
+        $this->postRepository
+            ->expects(self::never())
+            ->method('save');
+
+        $handler = new PostLikesIncrementerCommandHandler($this->postRepository);
+
+        $this->expectException(PostNotFoundException::class);
         $handler($command);
     }
 }

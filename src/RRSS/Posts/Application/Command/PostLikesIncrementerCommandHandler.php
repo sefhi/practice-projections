@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\RRSS\Posts\Application\Command;
 
+use App\RRSS\Posts\Domain\PostNotFoundException;
 use App\RRSS\Posts\Domain\PostRepository;
 use App\Shared\Domain\Bus\Command\CommandHandler;
 use Ramsey\Uuid\Uuid;
@@ -20,6 +21,10 @@ class PostLikesIncrementerCommandHandler implements CommandHandler
         $post = $this->postRepository->findById(
             Uuid::fromString($command->postId())
         );
+
+        if (null == $post) {
+            throw new PostNotFoundException($command->postId());
+        }
 
         $post->incrementLikes();
 
