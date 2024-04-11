@@ -17,7 +17,7 @@ final class Post extends AggregateRoot
         private readonly UuidInterface $id,
         private readonly UuidInterface $userId,
         private readonly PostContent $content,
-        private readonly PostLikes $likes,
+        private PostLikes $likes,
         private readonly Timestamps $dates
     ) {
     }
@@ -75,5 +75,10 @@ final class Post extends AggregateRoot
     public function updatedAt(): ?\DateTimeImmutable
     {
         return $this->dates->getUpdatedAt();
+    }
+
+    public function incrementLikes(): void
+    {
+        $this->likes = $this->likes->increment();
     }
 }

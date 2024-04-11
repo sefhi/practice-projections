@@ -39,4 +39,13 @@ class PostMother
             $command->content(),
         );
     }
+
+    public static function fromId(string $postId): Post
+    {
+        return self::publish(
+            $postId,
+            Uuid::uuid7(),
+            'content',
+        );
+    }
 }
