@@ -46,4 +46,19 @@ final class PostLikedDomainEvent extends DomainEvent
             'userId' => $this->userId,
         ];
     }
+
+    public function postId(): string
+    {
+        return $this->postId;
+    }
+
+    public function userId(): string
+    {
+        return $this->userId;
+    }
+
+    public function id(): string
+    {
+        return $this->id;
+    }
 }
