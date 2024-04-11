@@ -28,6 +28,12 @@ doctrine:
                 dir: '%kernel.project_dir%/src/RRSS/Posts/Infrastructure/Persistence/Doctrine/Mapping'
                 prefix: 'App\RRSS\Posts\Domain'
                 alias: RSS\Post
+            RRSS_Post_Likes:
+                type: xml
+                is_bundle: false
+                dir: '%kernel.project_dir%/src/RRSS/PostLikes/Infrastructure/Persistence/Doctrine/Mapping'
+                prefix: 'App\RRSS\PostLikes\Domain'
+                alias: RSS\PostLikes
             Retention:
                 type: xml
                 is_bundle: false
