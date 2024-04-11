@@ -33,6 +33,22 @@ final class RetentionUser extends AggregateRoot
         );
     }
 
+    public static function createWithTotalPostsAndAveragePostLikes(
+        string $id,
+        string $name,
+        string $email,
+        int $totalPosts,
+        float $averagePostLikes
+    ): self {
+        return new self(
+            Uuid::fromString($id),
+            $name,
+            $email,
+            $totalPosts,
+            $averagePostLikes,
+        );
+    }
+
     public function getId(): string
     {
         return $this->id->toString();
@@ -63,5 +79,10 @@ final class RetentionUser extends AggregateRoot
     public function totalPosts(): int
     {
         return $this->totalPosts;
+    }
+
+    public function averagePostLikes(): float
+    {
+        return $this->averagePostLikes;
     }
 }

@@ -32,14 +32,19 @@ final class RetentionUserMother
         );
     }
 
-    public static function withId(string $userId): RetentionUser
-    {
-        return self::create(
-            Uuid::fromString($userId)->toString(),
-            'name',
-            'email@email.com',
-            3,
-            3.3,
+    public static function createWithTotalPostsAndAveragePostLikes(
+        string $id,
+        string $name,
+        string $email,
+        int $totalPosts,
+        float $averagePostLikes
+    ): RetentionUser {
+        return RetentionUser::createWithTotalPostsAndAveragePostLikes(
+            $id,
+            $name,
+            $email,
+            $totalPosts,
+            $averagePostLikes,
         );
     }
 }
