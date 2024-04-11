@@ -8,8 +8,16 @@
         <id name="id" type="uuid" length="36"/>
         <field name="name" length="150"/>
         <field name="email" length="150"/>
-        <field name="totalPosts" type="integer"/>
-        <field name="averagePostLikes" type="float"/>
+        <field name="totalPosts" type="integer">
+            <options>
+                <option name="default">0</option>
+            </options>
+        </field>
+        <field name="averagePostLikes" type="float">
+            <options>
+                <option name="default">0</option>
+            </options>
+        </field>
     </entity>
 
 </doctrine-mapping>
