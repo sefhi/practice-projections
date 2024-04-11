@@ -14,6 +14,8 @@ final class RetentionUser extends AggregateRoot
         private UuidInterface $id,
         private string $name,
         private string $email,
+        private int $totalPosts,
+        private float $averagePostLikes,
     ) {
     }
 
@@ -26,6 +28,8 @@ final class RetentionUser extends AggregateRoot
             Uuid::fromString($id),
             $name,
             $email,
+            0,
+            0.0,
         );
     }
 
@@ -42,5 +46,22 @@ final class RetentionUser extends AggregateRoot
     public function getEmail(): string
     {
         return $this->email;
+    }
+
+    public function incrementTotalPosts(): void
+    {
+        $this->totalPosts = $this->totalPosts + 1;
+    }
+
+    public function recalculatesAveragePostLikes(): void
+    {
+        $totalLikes = $this->totalPosts * $this->averagePostLikes;
+
+        $this->averagePostLikes = $totalLikes / $this->totalPosts;
+    }
+
+    public function totalPosts(): int
+    {
+        return $this->totalPosts;
     }
 }

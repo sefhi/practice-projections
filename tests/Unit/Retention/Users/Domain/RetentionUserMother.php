@@ -12,7 +12,7 @@ final class RetentionUserMother
     public static function create(
         string $id,
         string $name,
-        string $email
+        string $email,
     ): RetentionUser {
         return RetentionUser::create(
             $id,
@@ -27,6 +27,19 @@ final class RetentionUserMother
             Uuid::uuid7()->toString(),
             'name',
             'email@email.com',
+            3,
+            3.3,
+        );
+    }
+
+    public static function withId(string $userId): RetentionUser
+    {
+        return self::create(
+            Uuid::fromString($userId)->toString(),
+            'name',
+            'email@email.com',
+            3,
+            3.3,
         );
     }
 }

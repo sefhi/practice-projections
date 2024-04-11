@@ -52,7 +52,7 @@ final class PostPublishedDomainEvent extends DomainEvent
         return $this->id;
     }
 
-    public function getUserId(): string
+    public function userId(): string
     {
         return $this->userId;
     }
