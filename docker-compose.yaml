@@ -32,3 +32,13 @@ services:
       - "5432:5432"
     volumes:
       - .docker/db/data:/var/lib/postgresql/data:rw
+  shared_rabbitmq:
+    container_name: 'shared_rabbitmq'
+    image: rabbitmq:${RABBITMQ_VERSION:-3.12}-management
+    environment:
+      RABBITMQ_DEFAULT_USER: ${RABBITMQ_DEFAULT_USER:-guest}
+      RABBITMQ_DEFAULT_PASS: ${RABBITMQ_DEFAULT_PASS:-guest}
+    restart: 'unless-stopped'
+    ports:
+      - "5672:5672"
+      - "15672:15672"

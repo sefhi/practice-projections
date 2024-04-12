@@ -2,8 +2,8 @@ POST http://localhost:41/api/posts
 Content-Type: application/json
 
 {
-    "id": "018ec793-20db-740f-8967-92d8b918bf57",
-    "userId": "018ec792-c9b5-7897-94b0-e7bdde96a623",
+    "id": "{{$random.uuid}}",
+    "userId": "{{$random.uuid}}",
     "content": "Hello world!"
 }
 

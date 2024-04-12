@@ -4,6 +4,8 @@ FROM php:8.2-apache
 RUN apt-get update -qq \
     && apt-get install -yq zlib1g-dev g++ libicu-dev zip libzip-dev zip libpq-dev\
     git-all unzip libxml2-dev \
+    libssl-dev \
+    librabbitmq-dev\
     --no-install-recommends\
     && pecl install xdebug-3.2.0 \
     && docker-php-ext-enable xdebug \
@@ -16,6 +18,9 @@ RUN apt-get update -qq \
     && docker-php-ext-install mysqli\
     && docker-php-ext-install pdo_pgsql\
     && docker-php-ext-install pgsql
+
+RUN pecl install amqp \
+    && docker-php-ext-enable amqp
 
 RUN docker-php-ext-enable xdebug
 RUN a2enmod rewrite

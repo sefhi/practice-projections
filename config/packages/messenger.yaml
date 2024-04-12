@@ -1,21 +1,37 @@
 framework:
     messenger:
         # Uncomment this (and the failed transport below) to send failed messages to this transport for later handling.
-        # failure_transport: failed
+        failure_transport: failed
         default_bus: query.bus
         transports:
             # https://symfony.com/doc/current/messenger.html#transport-configuration
-            # async: '%env(MESSENGER_TRANSPORT_DSN)%'
-            # failed: 'doctrine://default?queue_name=failed'
-            # sync: 'sync://'
+             async:
+                dsn: '%env(MESSENGER_TRANSPORT_DSN)%'
+                options:
+                    exchange:
+                       name: 'domain_events'
+                       type: 'topic'
+                       flags: 2 #AMQP_DURABLE
+                    queues:
+                       user_test:
+                          binding_keys:
+                            - 'practice-projections.rrss.user.*'
+                failure_transport: failed
+             failed: 'doctrine://default?queue_name=failed&auto_setup=1'
+             sync: 'sync://'
         buses:
             command.bus:
+              middleware:
+                - doctrine_transaction
             command.sync.bus:
             query.bus:
             event.bus:
+              middleware:
+                - doctrine_transaction
+
         routing:
             # Route your messages to the transports
-            # 'App\Message\YourMessage': async
+            'App\RRSS\Users\Domain\*': async
 
 # when@test:
 #    framework:

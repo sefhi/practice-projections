@@ -26,6 +26,9 @@ services:
     App\Shared\Domain\ValueObject\Timestamps:
         factory: [ 'App\Shared\Domain\ValueObject\Timestamps', 'defaultNow' ]
 
+
+    App\Shared\Domain\Bus\Event\EventBus: '@App\Shared\Infrastructure\Bus\Event\RabbitMqSymfonyEventBus'
+
     _instanceof:
         # all services implementing the CommandHandlerInterface
         # will be registered on the command.bus bus

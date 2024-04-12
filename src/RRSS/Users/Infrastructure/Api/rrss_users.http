@@ -4,9 +4,9 @@ POST http://localhost:41/api/users
 Content-Type: application/json
 
 {
-  "id": "018ec264-b66b-7fa1-a86f-c4599069b527",
-  "name": "John Doe2",
-  "email": "018ec264-b66b-7fa1-a86f-c4599069b527jhondoe@gmail.com",
-  "profilePicture": "https://www.google.com"
+  "id": "{{$random.uuid}}",
+  "name": "John Ford",
+  "email": "{{$random.email}}",
+  "profilePicture": "https://random"
 }
 
