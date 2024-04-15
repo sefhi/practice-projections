@@ -6,7 +6,7 @@ namespace App\RRSS\Users\Domain;
 
 use App\Shared\Domain\Bus\Event\DomainEvent;
 
-final class UserRegisteredDomainEvent extends DomainEvent
+final class UserRegisteredDomainEvent extends DomainEvent implements \JsonSerializable
 {
     public function __construct(
         private readonly string $id,
@@ -76,5 +76,10 @@ final class UserRegisteredDomainEvent extends DomainEvent
             'profilePicture' => $this->profilePicture,
             'status'         => $this->status,
         ];
+    }
+
+    public function jsonSerialize(): array
+    {
+        return $this->toPrimitives();
     }
 }
