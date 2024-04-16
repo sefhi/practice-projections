@@ -8,7 +8,9 @@ use App\Shared\Domain\Bus\Event\DomainEvent;
 use App\Shared\Domain\Bus\Event\EventBus;
 use App\Shared\Infrastructure\Bus\Event\Failover\DomainEventFailover;
 use Symfony\Component\Messenger\Bridge\Amqp\Transport\AmqpStamp;
+use Symfony\Component\Messenger\Envelope;
 use Symfony\Component\Messenger\MessageBusInterface;
+use Symfony\Component\Messenger\Stamp\DispatchAfterCurrentBusStamp;
 
 final class RabbitMqSymfonyEventBus implements EventBus
 {
@@ -23,10 +25,7 @@ final class RabbitMqSymfonyEventBus implements EventBus
         foreach ($events as $event) {
             try {
                 $this->eventBus->dispatch(
-                    $event,
-                    [
-                        new AmqpStamp($event::eventName()),
-                    ]
+                    (new Envelope($event))->with(new DispatchAfterCurrentBusStamp(), new AmqpStamp($event::eventName())),
                 );
             } catch (\Exception $e) {
                 $this->failover->publishEventFailover($event);
